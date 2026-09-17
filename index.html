@@ -166,6 +166,7 @@
             font-weight: 500;
             transition: color 0.3s;
             position: relative;
+            padding: 4px 0;
         }
 
         .nav-links a::after {
@@ -182,6 +183,17 @@
         .nav-links a:hover { color: #fff; }
         .nav-links a:hover::after { width: 100%; }
 
+        .nav-links a:hover {
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-4px); }
+            50% { transform: translateY(0); }
+            75% { transform: translateY(-2px); }
+        }
+
         .btn {
             display: inline-block;
             padding: 12px 28px;
@@ -193,6 +205,16 @@
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+        }
+
+        .btn:hover {
+            animation: btnBounce 0.4s ease;
+        }
+
+        @keyframes btnBounce {
+            0%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px); }
+            60% { transform: translateY(-2px); }
         }
 
         .btn-primary {
@@ -637,6 +659,17 @@
             border: 1px solid var(--border);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            animation: cardBounce 0.5s ease;
+        }
+
+        @keyframes cardBounce {
+            0%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+            60% { transform: translateY(-4px); }
         }
 
         .service-card::before {
