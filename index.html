@@ -936,6 +936,167 @@
             gap: 12px;
         }
 
+        /* ============ MODAL ============ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 22, 40, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-alt);
+            border-radius: 20px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalIn 0.3s ease-out;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--teal-dark) 100%);
+            padding: 32px 36px;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+        }
+
+        .modal-header .modal-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .modal-header .modal-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--teal-light);
+        }
+
+        .modal-header h2 {
+            font-family: var(--heading);
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .modal-header p {
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .modal-close svg {
+            width: 18px;
+            height: 18px;
+            fill: #fff;
+        }
+
+        .modal-body {
+            padding: 36px;
+        }
+
+        .modal-body h3 {
+            font-family: var(--heading);
+            font-size: 1.2rem;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .modal-body p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .modal-body ul {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .modal-body ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .modal-body ul li:last-child {
+            border-bottom: none;
+        }
+
+        .modal-body ul li svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--teal);
+            min-width: 18px;
+        }
+
+        .modal-highlight {
+            background: rgba(8, 145, 178, 0.08);
+            border-left: 4px solid var(--teal);
+            padding: 16px 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+
+        .modal-highlight p {
+            margin-bottom: 0;
+            color: var(--navy);
+            font-weight: 500;
+        }
+
+        .modal-cta {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
         /* ============ SCROLL REVEAL ============ */
         .reveal {
             opacity: 0;
@@ -1224,7 +1385,7 @@
                     </div>
                     <h3>Cardiology</h3>
                     <p>Advanced heart care with expert cardiologists using the latest diagnostic and treatment technologies.</p>
-                    <a href="#contact" class="service-link">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></a>
+                    <a href="javascript:void(0)" class="service-link" onclick="openModal('modal-cardiology')">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></a>
                 </div>
 
                 <div class="service-card reveal">
@@ -1233,7 +1394,7 @@
                     </div>
                     <h3>Neurology</h3>
                     <p>Specialized neurological care for brain, spine, and nervous system disorders with proven treatments.</p>
-                    <a href="#contact" class="service-link">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></a>
+                    <a href="javascript:void(0)" class="service-link" onclick="openModal('modal-neurology')">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></a>
                 </div>
 
                 <div class="service-card reveal">
@@ -1242,7 +1403,7 @@
                     </div>
                     <h3>Orthopedics</h3>
                     <p>Comprehensive bone and joint care including sports injuries, fractures, and joint replacements.</p>
-                    <a href="#contact" class="service-link">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></a>
+                    <a href="javascript:void(0)" class="service-link" onclick="openModal('modal-orthopedics')">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></a>
                 </div>
 
                 <div class="service-card reveal">
@@ -1251,7 +1412,7 @@
                     </div>
                     <h3>Pediatrics</h3>
                     <p>Gentle and specialized healthcare for infants, children, and adolescents in a child-friendly environment.</p>
-                    <a href="#contact" class="service-link">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></a>
+                    <a href="javascript:void(0)" class="service-link" onclick="openModal('modal-pediatrics')">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></a>
                 </div>
 
                 <div class="service-card reveal">
@@ -1260,7 +1421,7 @@
                     </div>
                     <h3>Emergency Care</h3>
                     <p>24/7 emergency department with rapid response teams and fully equipped trauma care facilities.</p>
-                    <a href="#contact" class="service-link">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></a>
+                    <a href="javascript:void(0)" class="service-link" onclick="openModal('modal-emergency')">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></a>
                 </div>
 
                 <div class="service-card reveal">
@@ -1269,7 +1430,7 @@
                     </div>
                     <h3>Diagnostics</h3>
                     <p>Advanced laboratory and imaging services including MRI, CT scan, X-ray, and ultrasound.</p>
-                    <a href="#contact" class="service-link">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></a>
+                    <a href="javascript:void(0)" class="service-link" onclick="openModal('modal-diagnostics')">Learn More <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg></a>
                 </div>
             </div>
         </div>
@@ -1513,7 +1674,245 @@
         </div>
     </footer>
 
+    <!-- ========== SERVICE MODALS ========== -->
+
+    <!-- Cardiology Modal -->
+    <div class="modal-overlay" id="modal-cardiology">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('modal-cardiology')"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
+                <div class="modal-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+                <h2>Cardiology Department</h2>
+                <p>Advanced heart care with expert cardiologists</p>
+            </div>
+            <div class="modal-body">
+                <h3>About the Department</h3>
+                <p>Our Cardiology Department is equipped with cutting-edge technology and staffed by world-renowned heart specialists. We provide comprehensive cardiac care from preventive screenings to complex surgical interventions.</p>
+                <div class="modal-highlight">
+                    <p>Our team has successfully performed over 10,000 cardiac procedures with a 99.2% success rate.</p>
+                </div>
+                <h3>Services We Offer</h3>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>ECG & Echocardiography</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Coronary Angiography & Angioplasty</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Heart Valve Replacement Surgery</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Pacemaker Implantation</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Cardiac Rehabilitation Programs</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Heart Failure Management</li>
+                </ul>
+                <h3>Our Experts</h3>
+                <p>Dr. James Mitchell leads our cardiology team with 15+ years of experience in interventional cardiology. Our team includes 8 board-certified cardiologists and 20+ cardiac care specialists.</p>
+                <div class="modal-cta">
+                    <a href="#contact" class="btn btn-primary" onclick="closeModal('modal-cardiology')">Book Consultation</a>
+                    <button class="btn btn-outline" onclick="closeModal('modal-cardiology')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Neurology Modal -->
+    <div class="modal-overlay" id="modal-neurology">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('modal-neurology')"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
+                <div class="modal-icon"><svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg></div>
+                <h2>Neurology Department</h2>
+                <p>Expert care for brain, spine, and nervous system</p>
+            </div>
+            <div class="modal-body">
+                <h3>About the Department</h3>
+                <p>Our Neurology Department specializes in diagnosing and treating disorders of the brain, spinal cord, and peripheral nerves. We use advanced imaging and diagnostic tools to provide precise treatment plans.</p>
+                <div class="modal-highlight">
+                    <p>Recognized as a Center of Excellence for stroke care and neurodegenerative disease treatment.</p>
+                </div>
+                <h3>Services We Offer</h3>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Stroke Prevention & Treatment</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Epilepsy & Seizure Disorders</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Multiple Sclerosis Treatment</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Parkinson's Disease Management</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Headache & Migraine Clinic</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Electroencephalography (EEG)</li>
+                </ul>
+                <h3>Our Experts</h3>
+                <p>Dr. Sarah Chen leads our neurology team, specializing in stroke prevention and neurodegenerative diseases. Our department has 6 neurologists and 15+ neurological care specialists.</p>
+                <div class="modal-cta">
+                    <a href="#contact" class="btn btn-primary" onclick="closeModal('modal-neurology')">Book Consultation</a>
+                    <button class="btn btn-outline" onclick="closeModal('modal-neurology')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Orthopedics Modal -->
+    <div class="modal-overlay" id="modal-orthopedics">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('modal-orthopedics')"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
+                <div class="modal-icon"><svg viewBox="0 0 24 24"><path d="M21 10h-8.35c-.53 0-.65.05-.88.28L10 12l1.28 1.28c.22.22.27.34.28.55V16h-1.5v3.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5V16H7v3.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5V16H4.5c-.28 0-.5-.22-.5-.5v-2.17c0-.01.02-.02.03-.03l4.14-4.14c.23-.23.36-.35.88-.35h7.47c.53 0 1.03.21 1.41.59.37.38.59.88.59 1.41v6.4c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-2h-1.5v2c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-2h-1.5v2c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-2H14v2c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-2H12v2c0 .28-.22.5-.5.5s-.5-.22-.5-.5V12.83l-2.5-2.5V16H7v3.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5V16H4.5V12h1.5v3.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5V12H3.5V9.5c0-.28.22-.5.5-.5H8V7.5c0-.28.22-.5.5-.5h3v-1.5c0-.28.22-.5.5-.5s.5.22.5.5V7h3.5c.28 0 .5.22.5.5V9h1.5c.28 0 .5.22.5.5v2h1.5c.28 0 .5.22.5.5v2c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-2h-1.5v2c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-2H17v2c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-2h-1.5v2c0 .28-.22.5-.5.5s-.5-.22-.5-.5V12h-1.5v2c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-2h-1.5v2c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-2H11v2c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-2H9v2c0 .28-.22.5-.5.5s-.5-.22-.5-.5v-2z"/></svg></div>
+                <h2>Orthopedics Department</h2>
+                <p>Comprehensive bone, joint, and muscle care</p>
+            </div>
+            <div class="modal-body">
+                <h3>About the Department</h3>
+                <p>Our Orthopedics Department provides expert care for conditions affecting the musculoskeletal system. From sports injuries to complex joint replacements, our surgeons use minimally invasive techniques for faster recovery.</p>
+                <div class="modal-highlight">
+                    <p>Over 5,000 successful joint replacement surgeries with 98.7% patient satisfaction rate.</p>
+                </div>
+                <h3>Services We Offer</h3>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Joint Replacement Surgery (Knee, Hip, Shoulder)</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Sports Injury Treatment</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Spine Surgery & Disc Treatment</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Fracture & Trauma Care</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Arthritis & Osteoporosis Treatment</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Physiotherapy & Rehabilitation</li>
+                </ul>
+                <h3>Our Experts</h3>
+                <p>Dr. Michael Rodriguez specializes in minimally invasive joint replacement and sports medicine. Our team includes 10 orthopedic surgeons and 25+ rehabilitation specialists.</p>
+                <div class="modal-cta">
+                    <a href="#contact" class="btn btn-primary" onclick="closeModal('modal-orthopedics')">Book Consultation</a>
+                    <button class="btn btn-outline" onclick="closeModal('modal-orthopedics')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pediatrics Modal -->
+    <div class="modal-overlay" id="modal-pediatrics">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('modal-pediatrics')"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
+                <div class="modal-icon"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+                <h2>Pediatrics Department</h2>
+                <p>Gentle healthcare for your little ones</p>
+            </div>
+            <div class="modal-body">
+                <h3>About the Department</h3>
+                <p>Our Pediatrics Department is designed to make children feel comfortable and safe. Our pediatricians are specially trained to handle the unique health needs of infants, children, and adolescents in a warm, child-friendly environment.</p>
+                <div class="modal-highlight">
+                    <p>Trusted by over 15,000 families for their children's healthcare needs.</p>
+                </div>
+                <h3>Services We Offer</h3>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Newborn & Infant Care</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Vaccination & Immunization</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Growth & Development Monitoring</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Pediatric Allergy Treatment</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Childhood Infection Treatment</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Nutrition & Dietary Guidance</li>
+                </ul>
+                <h3>Our Experts</h3>
+                <p>Dr. Emily Watson leads our pediatrics team with a passion for child development and preventive medicine. Our department includes 8 pediatricians and 12+ child care specialists.</p>
+                <div class="modal-cta">
+                    <a href="#contact" class="btn btn-primary" onclick="closeModal('modal-pediatrics')">Book Consultation</a>
+                    <button class="btn btn-outline" onclick="closeModal('modal-pediatrics')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Care Modal -->
+    <div class="modal-overlay" id="modal-emergency">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('modal-emergency')"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
+                <div class="modal-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg></div>
+                <h2>Emergency Care Department</h2>
+                <p>24/7 rapid response for critical situations</p>
+            </div>
+            <div class="modal-body">
+                <h3>About the Department</h3>
+                <p>Our Emergency Department operates 24/7 with a team of experienced emergency physicians, trauma surgeons, and critical care nurses. We are fully equipped to handle all types of medical emergencies with rapid response times.</p>
+                <div class="modal-highlight">
+                    <p>Average emergency response time of under 10 minutes. NACS Level II certified trauma center.</p>
+                </div>
+                <h3>Services We Offer</h3>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Trauma & Accident Emergency</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Cardiac Emergency Response</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Stroke Emergency Protocol</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Emergency Surgery</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>ICU & Critical Care</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Ambulance Services (108)</li>
+                </ul>
+                <div class="modal-highlight">
+                    <p>For emergencies, call our 24/7 helpline: <strong>+1 (555) 108-1080</strong></p>
+                </div>
+                <div class="modal-cta">
+                    <a href="tel:+15551081080" class="btn btn-primary">Call Emergency</a>
+                    <button class="btn btn-outline" onclick="closeModal('modal-emergency')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diagnostics Modal -->
+    <div class="modal-overlay" id="modal-diagnostics">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('modal-diagnostics')"><svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></button>
+                <div class="modal-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
+                <h2>Diagnostics Department</h2>
+                <p>Accurate diagnosis with advanced technology</p>
+            </div>
+            <div class="modal-body">
+                <h3>About the Department</h3>
+                <p>Our Diagnostics Department features the latest medical imaging and laboratory technology. Our experienced radiologists and lab technicians ensure accurate and timely diagnosis for effective treatment planning.</p>
+                <div class="modal-highlight">
+                    <p>ISO certified laboratory processing over 500 tests daily with 99.8% accuracy rate.</p>
+                </div>
+                <h3>Services We Offer</h3>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>MRI (1.5T & 3T)</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>CT Scan (128-slice)</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Digital X-Ray & Mammography</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Ultrasound & Color Doppler</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Blood Tests & Pathology</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>ECG, EEG & Pulmonary Function Tests</li>
+                </ul>
+                <h3>Quick Reports</h3>
+                <p>Most routine test results are available within 2-4 hours. Specialized tests like MRI and CT scans are reported within 24 hours by our expert radiologists.</p>
+                <div class="modal-cta">
+                    <a href="#contact" class="btn btn-primary" onclick="closeModal('modal-diagnostics')">Book Test</a>
+                    <button class="btn btn-outline" onclick="closeModal('modal-diagnostics')">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Modal Functions
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on overlay click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
+        });
+
         // Mobile Menu Toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
