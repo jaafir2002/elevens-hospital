@@ -205,16 +205,25 @@
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+            animation: btnIdle 2s ease-in-out infinite;
         }
 
         .btn:hover {
-            animation: btnBounce 0.4s ease;
+            animation: btnBounce 0.5s ease forwards;
+        }
+
+        @keyframes btnIdle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
         }
 
         @keyframes btnBounce {
-            0%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-6px); }
-            60% { transform: translateY(-2px); }
+            0% { transform: translateY(0); }
+            20% { transform: translateY(-8px); }
+            40% { transform: translateY(0); }
+            60% { transform: translateY(-5px); }
+            80% { transform: translateY(0); }
+            100% { transform: translateY(-2px); }
         }
 
         .btn-primary {
@@ -746,9 +755,22 @@
             font-size: 0.9rem;
             text-decoration: none;
             transition: gap 0.3s;
+            animation: linkIdle 2.5s ease-in-out infinite;
         }
 
-        .service-link:hover { gap: 12px; }
+        .service-link:hover { gap: 12px; animation: linkBounce 0.4s ease; }
+
+        @keyframes linkIdle {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(3px); }
+        }
+
+        @keyframes linkBounce {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(6px); }
+            50% { transform: translateX(0); }
+            75% { transform: translateX(3px); }
+        }
 
         .service-link svg {
             width: 16px;
@@ -837,10 +859,23 @@
             justify-content: center;
             transition: all 0.3s;
             cursor: pointer;
+            animation: doctorSocialIdle 3s ease-in-out infinite;
         }
 
         .doctor-social:hover {
             background: var(--teal);
+            animation: doctorSocialBounce 0.4s ease;
+        }
+
+        @keyframes doctorSocialIdle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        @keyframes doctorSocialBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            30% { transform: translateY(-5px) scale(1.1); }
+            60% { transform: translateY(-1px) scale(1.05); }
         }
 
         .doctor-social svg {
@@ -1056,10 +1091,23 @@
             justify-content: center;
             transition: all 0.3s;
             cursor: pointer;
+            animation: socialIdle 3s ease-in-out infinite;
         }
 
         .social-link:hover {
             background: var(--teal);
+            animation: socialBounce 0.5s ease;
+        }
+
+        @keyframes socialIdle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        @keyframes socialBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            30% { transform: translateY(-6px) scale(1.1); }
+            60% { transform: translateY(-2px) scale(1.05); }
         }
 
         .social-link svg {
@@ -1129,10 +1177,23 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: gap 0.3s;
+            animation: backIdle 2s ease-in-out infinite;
         }
 
         .back-to-top:hover {
             gap: 12px;
+            animation: backBounce 0.4s ease;
+        }
+
+        @keyframes backIdle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+
+        @keyframes backBounce {
+            0%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+            60% { transform: translateY(-1px); }
         }
 
         /* ============ MODAL ============ */
