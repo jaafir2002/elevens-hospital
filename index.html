@@ -107,6 +107,42 @@
 
         .top-bar-right a:hover svg { fill: #fff; }
 
+        .btn-book {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-family: var(--heading);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(8,145,178,0.4);
+            animation: bookIdle 2s ease-in-out infinite;
+        }
+
+        .btn-book:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(8,145,178,0.5);
+            animation: bookBounce 0.5s ease;
+        }
+
+        @keyframes bookIdle {
+            0%, 100% { box-shadow: 0 4px 15px rgba(8,145,178,0.4); }
+            50% { box-shadow: 0 6px 20px rgba(34,211,238,0.5); }
+        }
+
+        @keyframes bookBounce {
+            0% { transform: translateY(0) scale(1); }
+            25% { transform: translateY(-8px) scale(1.05); }
+            50% { transform: translateY(0) scale(1); }
+            75% { transform: translateY(-4px) scale(1.02); }
+            100% { transform: translateY(-2px) scale(1.03); }
+        }
+
         /* ============ HEADER / NAVBAR ============ */
         header {
             background: rgba(10, 22, 40, 0.95);
@@ -155,8 +191,12 @@
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 32px;
+            gap: 8px;
             align-items: center;
+        }
+
+        .nav-links li {
+            position: relative;
         }
 
         .nav-links a {
@@ -164,34 +204,31 @@
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s;
             position: relative;
-            padding: 4px 0;
+            padding: 10px 18px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid transparent;
         }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--teal-light);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover { color: #fff; }
-        .nav-links a:hover::after { width: 100%; }
 
         .nav-links a:hover {
-            animation: bounce 0.5s ease;
+            color: #fff;
+            background: rgba(34,211,238,0.15);
+            border-color: rgba(34,211,238,0.3);
+            animation: navBounce 0.4s ease;
         }
 
-        @keyframes bounce {
+        .nav-links a.active {
+            color: var(--teal-light);
+            background: rgba(34,211,238,0.15);
+            border-color: rgba(34,211,238,0.3);
+        }
+
+        @keyframes navBounce {
             0%, 100% { transform: translateY(0); }
-            25% { transform: translateY(-4px); }
-            50% { transform: translateY(0); }
-            75% { transform: translateY(-2px); }
+            30% { transform: translateY(-4px); }
+            60% { transform: translateY(-1px); }
         }
 
         .btn {
@@ -1412,9 +1449,15 @@
                 right: 0;
                 background: var(--navy);
                 flex-direction: column;
-                padding: 24px;
-                gap: 16px;
+                padding: 16px;
+                gap: 8px;
                 box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            }
+
+            .nav-links a {
+                display: block;
+                text-align: center;
+                padding: 12px 20px;
             }
 
             .nav-links.active { display: flex; }
@@ -1530,8 +1573,8 @@
                 <li><a href="#doctors">Doctors</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="nav-actions" style="display:flex;align-items:center;gap:16px;">
-                <a href="#contact" class="btn btn-primary" style="padding:10px 22px;font-size:0.9rem;">Book Now</a>
+            <div class="nav-actions" style="display:flex;align-items:center;gap:12px;">
+                <a href="#contact" class="btn-book" style="padding:10px 24px;font-size:0.9rem;">Book Now</a>
                 <div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="Menu toggle">
                     <span></span>
                     <span></span>
